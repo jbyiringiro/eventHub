@@ -189,8 +189,4 @@ class FirebaseAuthService {
       rethrow;
     }
   }
-
-  // Remove these methods since we're not using backend APIs for now
-  // Future<http.Response> authenticatedPost(...) - REMOVE
-  // Future<http.Response> authenticatedGet(...) - REMOVE
 }
