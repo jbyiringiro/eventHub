@@ -1,0 +1,22 @@
+name: eventhub
+description: A lightweight localized event management app for grassroots organizers.
+publish_to: 'none' 
+version: 0.1.0
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^5.0.0
+  http: ^0.13.3
+  flutter_local_notifications: ^9.0.0
+  cupertino_icons: ^1.0.2
+  intl: ^0.17.0
+  flutter_lints: ^6.0.0
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
