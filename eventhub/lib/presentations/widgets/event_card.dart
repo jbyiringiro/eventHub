@@ -243,4 +243,4 @@ class EventCard extends StatelessWidget {
       ),
     );
   }
-}
+} 
