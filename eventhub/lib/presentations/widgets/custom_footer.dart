@@ -29,4 +29,4 @@ class CustomFooter extends StatelessWidget {
       ),
     );
   }
-}
+} 
