@@ -54,40 +54,4 @@ class EventEntity extends Equatable {
         attendeeIds,
         maxAttendees,
       ];
-
-  EventEntity copyWith({
-    String? id,
-    String? title,
-    DateTime? date,
-    String? time,
-    String? location,
-    String? description,
-    String? image,
-    int? attendees,
-    String? organizer,
-    String? category,
-    String? status,
-    String? userId,
-    DateTime? createdAt,
-    List<String>? attendeeIds,
-    int? maxAttendees,
-  }) {
-    return EventEntity(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      date: date ?? this.date,
-      time: time ?? this.time,
-      location: location ?? this.location,
-      description: description ?? this.description,
-      image: image ?? this.image,
-      attendees: attendees ?? this.attendees,
-      organizer: organizer ?? this.organizer,
-      category: category ?? this.category,
-      status: status ?? this.status,
-      userId: userId ?? this.userId,
-      createdAt: createdAt ?? this.createdAt,
-      attendeeIds: attendeeIds ?? this.attendeeIds,
-      maxAttendees: maxAttendees ?? this.maxAttendees,
-    );
-  }
 }
