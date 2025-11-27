@@ -1,3 +1,4 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import '../models/user.dart';
@@ -8,15 +9,18 @@ class AuthService {
   static final AuthService _instance = AuthService._internal();
   factory AuthService() => _instance;
   AuthService._internal();
-
+  
   final LocalStorageService _storageService = LocalStorageService();
   final FirebaseAuthService _firebaseAuth = FirebaseAuthService();
 
+
   // Use Firebase auth state changes
-  Stream<User?> get authStateChanges => _firebaseAuth.user;
+
+   Stream<User?> get authStateChanges => _firebaseAuth.user;
 
   // Get current user (prefer Firebase, fallback to local)
-  Future<User?> get currentUser async {
+
+   Future<User?> get currentUser async {
     final firebaseUser = await _firebaseAuth.currentUser;
     if (firebaseUser != null) {
       return firebaseUser;
@@ -64,13 +68,13 @@ class AuthService {
       }
 
       // Create new user in local storage only
-      final newUser = User(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        email: email,
-        name: '$firstName $lastName',
-        profilePictureUrl: null,
-        createdAt: DateTime.now(),
-        phone: phone,
+        final newUser = User(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          email: email,
+          name: '$firstName $lastName',
+          profilePictureUrl: null,
+          createdAt: DateTime.now(),
+          phone: phone,
       );
 
       await _storageService.saveUser(newUser);
