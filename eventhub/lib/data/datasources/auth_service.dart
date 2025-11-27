@@ -19,7 +19,7 @@ class AuthService {
    Stream<User?> get authStateChanges => _firebaseAuth.user;
 
   // Get current user (prefer Firebase, fallback to local)
-
+  
    Future<User?> get currentUser async {
     final firebaseUser = await _firebaseAuth.currentUser;
     if (firebaseUser != null) {
@@ -29,7 +29,8 @@ class AuthService {
   }
 
   // Sign up with email and password - USE FIREBASE
-  Future<User> signUp({
+
+   Future<User> signUp({
     required String email,
     required String password,
     required String firstName,
