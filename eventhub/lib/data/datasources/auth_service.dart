@@ -148,7 +148,6 @@ class AuthService {
       debugPrint('📧 Password reset requested for: $email (local user)');
     }
   }
-
   // Logout - USE FIREBASE
   Future<void> logout() async {
     try {
@@ -162,7 +161,7 @@ class AuthService {
     }
   }
 
-  // Update user profile - USE FIREBASE
+// Update user profile - USE FIREBASE
   Future<User> updateProfile({
     required String userId,
     String? name,
@@ -174,6 +173,7 @@ class AuthService {
         name: name ?? '',
         profilePictureUrl: profilePictureUrl,
       );
+      
       debugPrint('✅ Firebase profile update successful');
       return user;
     } catch (e) {
