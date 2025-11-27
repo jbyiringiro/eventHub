@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
@@ -7,6 +6,7 @@ import 'presentation/pages/login_page.dart';
 import 'presentation/pages/register_page.dart';
 import 'presentation/pages/create_event_page.dart';
 import 'core/constants/app_colors.dart';
+import 'core/services/preferences_service.dart';
 import 'presentation/widgets/main_app_shell.dart';
 import 'presentation/bloc/auth/auth_bloc.dart';
 import 'presentation/bloc/event/event_bloc.dart';
@@ -29,10 +29,39 @@ void main() async {
     return;
   }
   
-  runApp(EventEaseApp());
+  runApp(const EventEaseApp());
 }
 
-class EventEaseApp extends StatelessWidget {
+class EventEaseApp extends StatefulWidget {
+  const EventEaseApp({Key? key}) : super(key: key);
+
+  @override
+  State<EventEaseApp> createState() => _EventEaseAppState();
+
+  /// Access theme change from anywhere in the app
+  static _EventEaseAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<_EventEaseAppState>();
+}
+
+class _EventEaseAppState extends State<EventEaseApp> {
+  final PreferencesService _prefsService = PreferencesService();
+  ThemeMode _themeMode = ThemeMode.system;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    final theme = await _prefsService.getThemeMode();
+    setState(() => _themeMode = theme);
+  }
+
+  void changeTheme(ThemeMode mode) {
+    setState(() => _themeMode = mode);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -46,14 +75,35 @@ class EventEaseApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'EventEase',
+        themeMode: _themeMode,
         theme: ThemeData(
           primaryColor: AppColors.emerald600,
           scaffoldBackgroundColor: AppColors.gray50,
-          appBarTheme: AppBarTheme(
+          brightness: Brightness.light,
+          appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             elevation: 0,
             iconTheme: IconThemeData(color: Colors.black),
-            titleTextStyle: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        darkTheme: ThemeData(
+          primaryColor: AppColors.emerald600,
+          scaffoldBackgroundColor: const Color(0xFF121212),
+          brightness: Brightness.dark,
+          appBarTheme: AppBarTheme(
+            backgroundColor: const Color(0xFF1E1E1E),
+            elevation: 0,
+            iconTheme: const IconThemeData(color: Colors.white),
+            titleTextStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         home: LoginPage(),
@@ -61,9 +111,9 @@ class EventEaseApp extends StatelessWidget {
           '/home': (context) => MainAppShell(),
           '/login': (context) => LoginPage(),
           '/register': (context) => RegisterPage(),
-          '/dashboard': (context) => MainAppShell(initialTab: 2),
-          '/events': (context) => MainAppShell(initialTab: 1),
-          '/create-event': (context) => CreateEventPage(),
+          '/dashboard': (context) => const MainAppShell(initialTab: 2),
+          '/events': (context) => const MainAppShell(initialTab: 1),
+          '/create-event': (context) => const CreateEventPage(),
         },
       ),
     );
@@ -111,4 +161,4 @@ class ErrorApp extends StatelessWidget {
       ),
     );
   }
-} 
+}
