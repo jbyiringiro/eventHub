@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/event.dart';
@@ -9,6 +10,20 @@ class BackendService {
   
   // Events endpoints
   static Future<List<Event>> getEvents() async {
+=======
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+/// Google authentication datasource
+class GoogleAuthDatasource {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  /// Sign in with Google
+
+   Future<User?> signInWithGoogle() async {
+>>>>>>> a842aa5b73b7b0e28193c764dc235922de9f5b51
     try {
       final response = await http.get(Uri.parse('$_baseUrl/events'));
       
@@ -18,6 +33,24 @@ class BackendService {
       } else {
         throw Exception('Failed to load events');
       }
+<<<<<<< HEAD
+=======
+
+      // Obtain auth details
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      // Create Firebase credential
+
+       final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in to Firebase
+
+       final userCredential = await _auth.signInWithCredential(credential);
+      return userCredential.user;
+>>>>>>> a842aa5b73b7b0e28193c764dc235922de9f5b51
     } catch (e) {
       throw Exception('Network error: $e');
     }
