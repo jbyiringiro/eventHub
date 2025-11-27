@@ -63,7 +63,8 @@ class _HomePageState extends State<HomePage> {
             ..sort((a, b) => b.date.compareTo(a.date));
         }
 
-        return Scaffold(
+
+    return Scaffold(
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
@@ -93,6 +94,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Logo and Title
+
                         Row(
                           children: [
                             Container(
@@ -101,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                                 color: AppColors.emerald600.withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(10),
                               ),
+    
                               child: Icon(
                                 Icons.event_rounded,
                                 color: AppColors.emerald600,
