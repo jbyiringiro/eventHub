@@ -207,7 +207,8 @@ class AuthService {
   }
 
   // Delete account
-  Future<void> deleteAccount(String userId) async {
+
+   Future<void> deleteAccount(String userId) async {
     try {
       // Try to delete Firebase user first
       final user = firebase_auth.FirebaseAuth.instance.currentUser;
@@ -222,4 +223,5 @@ class AuthService {
     await _storageService.logout();
     debugPrint('✅ Local storage cleared');
   }
+  
 }
