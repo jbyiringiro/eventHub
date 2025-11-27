@@ -19,7 +19,7 @@ class AuthService {
    Stream<User?> get authStateChanges => _firebaseAuth.user;
 
   // Get current user (prefer Firebase, fallback to local)
-
+  
    Future<User?> get currentUser async {
     final firebaseUser = await _firebaseAuth.currentUser;
     if (firebaseUser != null) {
@@ -29,7 +29,8 @@ class AuthService {
   }
 
   // Sign up with email and password - USE FIREBASE
-  Future<User> signUp({
+
+   Future<User> signUp({
     required String email,
     required String password,
     required String firstName,
@@ -147,7 +148,6 @@ class AuthService {
       debugPrint('📧 Password reset requested for: $email (local user)');
     }
   }
-
   // Logout - USE FIREBASE
   Future<void> logout() async {
     try {
@@ -161,7 +161,7 @@ class AuthService {
     }
   }
 
-  // Update user profile - USE FIREBASE
+// Update user profile - USE FIREBASE
   Future<User> updateProfile({
     required String userId,
     String? name,
@@ -173,6 +173,7 @@ class AuthService {
         name: name ?? '',
         profilePictureUrl: profilePictureUrl,
       );
+      
       debugPrint('✅ Firebase profile update successful');
       return user;
     } catch (e) {
@@ -206,7 +207,8 @@ class AuthService {
   }
 
   // Delete account
-  Future<void> deleteAccount(String userId) async {
+
+   Future<void> deleteAccount(String userId) async {
     try {
       // Try to delete Firebase user first
       final user = firebase_auth.FirebaseAuth.instance.currentUser;
@@ -221,4 +223,5 @@ class AuthService {
     await _storageService.logout();
     debugPrint('✅ Local storage cleared');
   }
+  
 }

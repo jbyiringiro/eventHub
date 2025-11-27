@@ -27,4 +27,5 @@ class UserEntity extends Equatable {
     phone,
     createdAt,
   ];
+  List<Object?> get props => [id, email, name, profilePictureUrl, phone, createdAt];
 }
