@@ -11,12 +11,18 @@ class GoogleAuthDatasource {
 
    Future<User?> signInWithGoogle() async {
     try {
-      // Trigger Google Sign-In flow
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final response = await http.get(Uri.parse('$_baseUrl/events'));
       
-      if (googleUser == null) {
-        return null; // User canceled sign-in
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        return data.map((json) => Event.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load events');
       }
+    } catch (e) {
+      throw Exception('Network error: $e');
+    }
+  }
 
       // Obtain auth details
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
@@ -27,18 +33,39 @@ class GoogleAuthDatasource {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+      
+      if (response.statusCode == 201) {
+        return Event.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Failed to create event');
+      }
+    } catch (e) {
+      throw Exception('Network error: $e');
+    }
+  }
 
       // Sign in to Firebase
 
        final userCredential = await _auth.signInWithCredential(credential);
       return userCredential.user;
     } catch (e) {
-      rethrow;
+      throw Exception('Network error: $e');
     }
   }
 
-  /// Sign out from Google
-  Future<void> signOut() async {
-    await _googleSignIn.signOut();
+  static Future<User?> getUser(String userId) async {
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/users/$userId'));
+      
+      if (response.statusCode == 200) {
+        return User.fromJson(json.decode(response.body));
+      } else if (response.statusCode == 404) {
+        return null;
+      } else {
+        throw Exception('Failed to load user');
+      }
+    } catch (e) {
+      throw Exception('Network error: $e');
+    }
   }
 }
