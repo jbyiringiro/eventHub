@@ -2,11 +2,11 @@
 
 A comprehensive Flutter-based mobile application for event management, built using Clean Architecture principles and BLoC state management. EventEase enables users to discover, create, manage, and RSVP to events with real-time Firebase synchronization.
 
-## 📱 Overview
+## Overview
 
 EventEase is a cross-platform mobile application designed to simplify event discovery and management. Users can browse upcoming events, create their own events with detailed information, RSVP to events they're interested in, and manage attendance with configurable maximum attendee limits. The app features user authentication via email/password or Google Sign-In, persistent user preferences including theme customization, and a real-time synchronized event database.
 
-## ✨ Key Features
+## Key Features
 
 ### User Management
 - **Authentication**: Email/password and Google Sign-In integration
@@ -39,7 +39,7 @@ EventEase is a cross-platform mobile application designed to simplify event disc
 - **Loading States**: Visual feedback during data fetching operations
 - **Error Handling**: User-friendly error messages with retry options
 
-## 🏗 Architecture
+## Architecture
 
 EventEase follows **Clean Architecture** principles with clear separation of concerns across four layers:
 
@@ -135,7 +135,7 @@ Presentation → Domain ← Data
 
 Dependencies only flow inward, ensuring the domain layer remains pure and testable.
 
-## 🔥 Firebase Configuration
+## Firebase Configuration
 
 ### Prerequisites
 1. Firebase project created at [Firebase Console](https://console.firebase.google.com/)
@@ -202,9 +202,9 @@ After running `flutterfire configure`, these files are created:
 - `android/app/google-services.json` - Android Firebase config
 - `ios/Runner/GoogleService-Info.plist` - iOS Firebase config
 
-**⚠️ Security Note**: Never commit Firebase private keys or service account credentials to version control.
+** Security Note**: Never commit Firebase private keys or service account credentials to version control.
 
-## 📦 Dependencies
+## Dependencies
 
 ### Core Dependencies
 ```yaml
@@ -362,7 +362,7 @@ flutter test --coverage           # With coverage report
 00:05 +6: All tests passed!
 ```
 
-## 📸 Screenshots
+## Screenshots
 
 ### Authentication
 - **Login Page**: Email/password fields with Google Sign-In button
@@ -383,19 +383,15 @@ flutter test --coverage           # With coverage report
 - **Dark Theme**: Dark gray (#121212) backgrounds optimized for low light
 - **System Theme**: Automatically matches device theme preference
 
-## 🐛 Known Limitations
+## Known Limitations
 
 ### Current Limitations
-1. **Image Upload**: ImageKit integration requires API keys - fallback to placeholder images if not configured
-2. **Offline Support**: Limited offline functionality - requires internet connection for Firestore operations
-3. **Real-time Updates**: Events page doesn't auto-refresh when other users modify events (manual refresh required)
-4. **Event Editing**: Created events cannot be edited after creation (only deletion available to organizers)
-5. **Search Functionality**: Basic text search only - no advanced filters (date range, location radius, price)
-6. **Notifications**: Push notifications for event reminders not yet implemented
-7. **Social Features**: No friend system, event comments, or sharing capabilities
-8. **Accessibility**: Limited screen reader support and accessibility features
-9. **Analytics**: No analytics dashboard for event organizers to track engagement
-10. **Multi-language**: Translation strings exist but not fully implemented across all pages
+
+1. **Offline Support**: Limited offline functionality - requires internet connection for Firestore operations
+3. **Search Functionality**: Basic text search only - no advanced filters (date range, location radius, price)
+4. **Notifications**: Push notifications for event reminders not yet implemented
+5. **Social Features**: No friend system, event comments, or sharing capabilities
+6. **Multi-language**: Translation strings exist but not fully implemented across all pages
 
 ### Future Enhancements
 - Add event editing functionality for organizers
@@ -408,7 +404,7 @@ flutter test --coverage           # With coverage report
 - Full accessibility compliance with screen reader support
 - Complete multi-language translation system
 
-## 🎓 Academic Integrity & AI Usage Disclosure
+##  Academic Integrity & AI Usage Disclosure
 
 This project was developed as part of a Mobile Development course final project. Development included use of AI assistance tools within ethical boundaries:
 
@@ -439,18 +435,18 @@ Through this project, I demonstrated proficiency in:
 
 All code has been reviewed, understood, and customized to meet project requirements. AI tools were used as learning aids and productivity enhancers, not as replacements for understanding core concepts.
 
-## 📄 License
+##  License
 
 This project is developed for educational purposes as part of a Mobile Development course.
 
-## 👤 Author
+##  Authors
+      Sheryl Otieno
+      Fejiro Obiku
+      Byiringiro Josue
+      Sougnabe Payang
+      Mahe Digne
 
-**Student Name**: [Your Name]  
-**Student ID**: [Your Student ID]  
-**Course**: Mobile Development  
-**Submission Date**: November 28, 2024
-
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - **Flutter Team**: For the excellent cross-platform framework
 - **Firebase**: For backend-as-a-service infrastructure
@@ -459,7 +455,7 @@ This project is developed for educational purposes as part of a Mobile Developme
 - **Course Instructors**: For guidance and feedback throughout development
 - **Open Source Community**: For dependencies and learning resources
 
-## 📚 References & Resources
+##  References & Resources
 
 ### Documentation
 - [Flutter Official Documentation](https://docs.flutter.dev/)
